@@ -12,9 +12,7 @@ import (
 */
 // a ... 叫可变长参数, 返回一个int类型的channel, 读作chan of int
 func ArraySource(a ...int) <-chan int {
-
 	out := make(chan int)
-
 	go func() {
 		for _, v := range a {
 			// 在goroutine里把数据送进去
@@ -42,10 +40,8 @@ func InMemSort(in <-chan int) <-chan int {
 			out <- v
 		}
 		close(out)
-
 	}()
 	return out
-
 }
 
 // 核心方法
@@ -91,7 +87,6 @@ func ReaderSource(reader io.Reader, chunkSize int) <-chan int {
 		close(out)
 	}()
 	return out
-
 }
 
 func WriterSink(writer io.Writer, in <-chan int) {
